@@ -1,5 +1,9 @@
 from django.conf import settings
 from django.shortcuts import render
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import redirect
+from django.views.decorators.http import require_http_methods
 
 
 def apps_index(request):
@@ -24,3 +28,23 @@ def apps_index(request):
             apps.append(app_label)
 
     return render(request, "index.html", {"apps": apps})
+
+
+@require_http_methods(["GET", "POST"])
+def register(request):
+    """Simple user registration view using Django's built-in UserCreationForm.
+
+    On successful registration the user will be logged in and redirected
+    to the site root.
+    """
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Log the user in and redirect to the index
+            login(request, user)
+            return redirect("index")
+    else:
+        form = UserCreationForm()
+
+    return render(request, "registration/register.html", {"form": form})

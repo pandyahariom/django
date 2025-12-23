@@ -21,6 +21,9 @@ from . import views
 urlpatterns = [
     # root index that lists installed apps
     path("", views.apps_index, name="index"),
+    # authentication (login/logout) and registration
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/register/", views.register, name="register"),
     path("polls/", include("polls.urls")),
     path('admin/', admin.site.urls),
 ]
