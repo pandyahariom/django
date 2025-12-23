@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Installed apps</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 1rem }
+        ul { list-style: none; padding: 0 }
+        li { margin: .5rem 0 }
+    </style>
+</head>
+<body>
+    <h1>Installed apps</h1>
+    {% if apps %}
+        <ul>
+        {% for app in apps %}
+            <li><a href="/{{ app }}/">{{ app }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No non-django apps found in INSTALLED_APPS.</p>
+    {% endif %}
+</body>
+</html>

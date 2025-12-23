@@ -55,7 +55,9 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # include the project-level templates directory so views in the project
+        # (not inside an app) can render templates placed under mysite/templates/
+        'DIRS': [BASE_DIR / 'mysite' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
