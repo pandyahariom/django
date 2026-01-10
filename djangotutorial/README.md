@@ -39,7 +39,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-2. Install Django (if you don't have a `requirements.txt`):
+2. Install Django:
 
 ```bash
 python3 -m pip install Django
