@@ -42,13 +42,13 @@ source .venv/bin/activate
 2. Install Django (if you don't have a `requirements.txt`):
 
 ```bash
-pip install Django
+python3 -m pip install Django
 ```
 
 3. Run migrations and create a superuser if you want the admin site:
 
 ```bash
-cd /home/hariom/django/djangotutorial
+cd /home/hariom/django/djangotutorial <Your directory where it is cloned>
 python3 manage.py migrate
 python3 manage.py createsuperuser
 ```
