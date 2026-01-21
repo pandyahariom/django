@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import PersonForm
 from .models import Person
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def person_form_view(request):
     if request.method == 'POST':
         form = PersonForm(request.POST)

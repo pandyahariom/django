@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Person Form</title>
-</head>
+{% extends 'base.html' %}
+
+{% block title %}Person Form{% endblock %}
+
+{% block content %}
 <body>
     <h2>Enter Person Details</h2>
     <form method="post">
@@ -18,4 +18,4 @@
     {% endfor %}
     </ul>
 </body>
-</html>
+{% endblock %}
