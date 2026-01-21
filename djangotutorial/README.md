@@ -1,11 +1,9 @@
 # Django Tutorial Project (djangotutorial)
 
-This small Django project contains a simple `polls` app and a minimal project-level UI with authentication.
+This Django project contains a `polls` app and a `userForm` app, plus a minimal project-level UI with authentication.
 
 The repository implements the following features:
 
-- Static files
-  - `polls/static/polls/style.css` is used for simple page styling and is loaded via the `{% static %}` template tag.
 - Project root index
   - The root URL `/` lists installed (non-Django) apps and links to `/<app>/` (e.g. `/polls/`).
 - Authentication
@@ -14,8 +12,10 @@ The repository implements the following features:
   - Logout: logout is implemented as a POST (form) to the logout view to avoid GET/405 issues.
   - After login the site root displays the username in the header.
 - Access control
-  - `polls` views (index/detail/results and vote) are protected so unauthenticated users are redirected to the login page.
+  - `polls` views (index/detail/results and vote) and `userForm` view are protected so unauthenticated users are redirected to the login page.
   - `LOGIN_URL` and `LOGIN_REDIRECT_URL` are set in `mysite/settings.py`.
+- Static files
+  - `polls/static/polls/style.css` is used for simple page styling and is loaded via the `{% static %}` template tag.
 
 Files of interest
 -----------------
@@ -28,6 +28,7 @@ Files of interest
 - `mysite/templates/index.html` — project root index (extends `base.html`).
 - `mysite/templates/registration/` — custom login/register/logged_out templates.
 - `polls/` — the example app (models, views, templates in `polls/templates/polls/`).
+- `userForm/` — demonstrates a simple Django `Form`/model form workflow; template at `userForm/templates/userForm/person_form.html` and view `person_form_view` mounted at `/userForm/`.
 
 How to run (development)
 ------------------------
@@ -63,6 +64,7 @@ python3 manage.py runserver
 
 - Project root / index:  http://127.0.0.1:8000/
 - Polls app:           http://127.0.0.1:8000/polls/
+- User form example:   http://127.0.0.1:8000/userForm/
 - Login:                http://127.0.0.1:8000/accounts/login/
 - Register:             http://127.0.0.1:8000/accounts/register/
 - Admin:                http://127.0.0.1:8000/admin/
@@ -74,5 +76,6 @@ Notes and troubleshooting
 - Static files not loading in development: ensure `DEBUG = True` in `mysite/settings.py`. Django's dev server serves app static files when `django.contrib.staticfiles` is in `INSTALLED_APPS` (this project includes it).
 - If you see `405 Method Not Allowed` on logout: make sure you submit logout as a POST. The templates include an inline form that submits POST with CSRF token.
 - If links to `/<app>/` 404: the project index lists all non-django apps by package name and assumes they are mounted at `/<app>/`. If an app is not mounted at that path it will 404 — you can either mount it explicitly in `mysite/urls.py` or improve the index view to test route resolution.
+ - If links to `/<app>/` 404: the project index lists all non-django apps by package name and assumes they are mounted at `/<app>/`. For example this project mounts `userForm` at `/userForm/` in `mysite/urls.py` so the index link will resolve. If an app is not mounted at that path it will 404 — you can either mount it explicitly in `mysite/urls.py` or improve the index view to test route resolution.
 
 
