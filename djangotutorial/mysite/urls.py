@@ -26,4 +26,5 @@ urlpatterns = [
     path("accounts/register/", views.register, name="register"),
     path("polls/", include("polls.urls")),
     path('admin/', admin.site.urls),
+    path("userform/", include("userForm.urls")),
 ]

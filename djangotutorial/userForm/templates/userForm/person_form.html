@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Person Form</title>
+</head>
+<body>
+    <h2>Enter Person Details</h2>
+    <form method="post">
+        {% csrf_token %} 
+        {{ form.as_p }} <!-- Renders the form within <p> tags -->
+        <button type="submit">Save</button>
+    </form>
+
+    <h2>Saved Details:</h2>
+    <ul>
+    {% for person in people %}
+        <li>{{ person.first_name }} {{ person.last_name }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
